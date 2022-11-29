@@ -5,3 +5,11 @@
 .bg-wrapper {
   width: 100vw;
 }
+.bowser {
+  position: absolute;
+  width: 90px;
+  height: 80px;
+  outline: 1px solid red;
+  left: 435px;
+  top: 505px;
+}
