@@ -5,5 +5,9 @@
 }
 
 body {
-  cursor: url("./assets/cursor.svg"), auto;
+  cursor: url("./assets/cursor.svg") 50 50, auto;
+}
+
+main {
+  position: relative;
 }

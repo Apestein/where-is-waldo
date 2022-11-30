@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import styles from "./styles/App.module.css"
-import bgImg from "./assets/universe-113.jpg"
-import { click } from "@testing-library/user-event/dist/click"
+import bgImg from "./assets/the-loc-nar.jpg"
+import MyStopwatch from "./Timer"
 
 function App() {
   const [clicked, setClicked] = useState("")
+  const [found, setFound] = useState([])
 
   function openMenu(e: any) {
     const menu = document.querySelector("template")
@@ -34,7 +35,9 @@ function App() {
 
   return (
     <>
-      <header></header>
+      <header>
+        <MyStopwatch />
+      </header>
       <main>
         <img
           onClick={closeMenu}
@@ -43,10 +46,13 @@ function App() {
           alt="bg-img"
         />
         <div onClick={openMenu} className={styles.bowser}></div>
+        <div onClick={openMenu} className={styles.yubaba}></div>
+        <div onClick={openMenu} className={styles.knight}></div>
       </main>
       <footer></footer>
       <template>
         <button onClick={checkLocation}>Bowser</button>
+        <button onClick={checkLocation}>Yubaba</button>
         <button onClick={checkLocation}>Knight</button>
       </template>
     </>
