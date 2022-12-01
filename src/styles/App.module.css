@@ -29,3 +29,9 @@
   left: 58.7%;
   top: 91.75%;
 }
+
+.foundBowser,
+.foundYubaba,
+.foundKnight {
+  width: 50px;
+}

@@ -1,13 +1,49 @@
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  cursor: url("./assets/cursor.svg") 50 50, auto;
+}
+
+header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: sticky;
+  top: 0;
+  background-color: #f7f8f9;
+  z-index: 1;
 }
 
 main {
+  cursor: url("./assets/cursor.svg") 50 50, auto;
   position: relative;
+}
+
+footer {
+  text-align: center;
+  color: #f7f8f9;
+  background: radial-gradient(
+    circle,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  background-size: 200%;
+  animation: gradient 10s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

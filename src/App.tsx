@@ -1,14 +1,35 @@
 import React, { useState } from "react"
 import styles from "./styles/App.module.css"
 import bgImg from "./assets/the-loc-nar.jpg"
-import MyStopwatch from "./Timer"
+import bowserImg from "./assets/bowser.png"
+import knightImg from "./assets/the-knight.webp"
+import yubabaImg from "./assets/yubaba.png"
+import { FaGithub } from "react-icons/fa"
+import { useStopwatch } from "react-timer-hook"
+import { useEffect } from "react"
 
 function App() {
   const [clicked, setClicked] = useState("")
-  const [found, setFound] = useState([])
+  const [found, setFound] = useState([""])
+  const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
+    useStopwatch({ autoStart: true })
+
+  useEffect(() => {
+    if (found.length === 3) pause()
+  }, [found])
+
+  const menu = document.querySelector("template")
+  const foundBowser = document.querySelector(
+    `.${styles.foundBowser}`
+  ) as HTMLElement | null
+  const foundYubaba = document.querySelector(
+    `.${styles.foundYubaba}`
+  ) as HTMLElement | null
+  const foundKnight = document.querySelector(
+    `.${styles.foundKnight}`
+  ) as HTMLElement | null
 
   function openMenu(e: any) {
-    const menu = document.querySelector("template")
     if (menu)
       menu.style.cssText = `
       display: block;
@@ -16,27 +37,42 @@ function App() {
       left: ${e.pageX}px;
       top: ${e.pageY}px;
     `
-    console.log(e.pageX, e.pageY)
-    console.log(e.target)
-    setClicked(e.target.className)
+    setClicked(e.target.dataset.char)
   }
 
   function closeMenu(e: any) {
-    const menu = document.querySelector("template")
     const bg = document.querySelector(`.${styles.bg}`)
     if (e.target === bg && menu) menu.style.display = "none"
   }
 
   function checkLocation(e: any) {
-    if (clicked.includes(e.target.textContent.toLowerCase()))
+    if (menu) menu.style.display = "none"
+    const buttonName = e.target.textContent.toLowerCase()
+    if (found.includes(buttonName)) return
+    if (clicked === buttonName) {
       console.log("correct")
-    else console.log("incorrect")
+      setFound((prev) => [...prev, buttonName])
+      if (buttonName === "bowser" && foundBowser)
+        foundBowser.style.opacity = "0.5"
+      if (buttonName === "yubaba" && foundYubaba)
+        foundYubaba.style.opacity = "0.5"
+      if (buttonName === "knight" && foundKnight)
+        foundKnight.style.opacity = "0.5"
+    } else console.log("incorrect")
   }
 
   return (
     <>
       <header>
-        <MyStopwatch />
+        <h1>Find Them</h1>
+        <time>
+          {hours}:{minutes}:{seconds}
+        </time>
+        <div>
+          <img className={styles.foundBowser} src={bowserImg} alt="bowser" />
+          <img className={styles.foundYubaba} src={yubabaImg} alt="yubaba" />
+          <img className={styles.foundKnight} src={knightImg} alt="knight" />
+        </div>
       </header>
       <main>
         <img
@@ -45,11 +81,28 @@ function App() {
           src={bgImg}
           alt="bg-img"
         />
-        <div onClick={openMenu} className={styles.bowser}></div>
-        <div onClick={openMenu} className={styles.yubaba}></div>
-        <div onClick={openMenu} className={styles.knight}></div>
+        <div
+          onClick={openMenu}
+          data-char="bowser"
+          className={styles.bowser}
+        ></div>
+        <div
+          onClick={openMenu}
+          data-char="yubaba"
+          className={styles.yubaba}
+        ></div>
+        <div
+          onClick={openMenu}
+          data-char="knight"
+          className={styles.knight}
+        ></div>
       </main>
-      <footer></footer>
+      <footer>
+        Copyright © 2022 Apestein{" "}
+        <FaGithub
+          onClick={() => window.open("https://github.com/Apestein", "_blank")}
+        />
+      </footer>
       <template>
         <button onClick={checkLocation}>Bowser</button>
         <button onClick={checkLocation}>Yubaba</button>
