@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styles from "./styles/App.module.css"
 import bgImg from "./assets/the-loc-nar.jpg"
 import bowserImg from "./assets/bowser.png"
@@ -6,11 +6,12 @@ import knightImg from "./assets/the-knight.webp"
 import yubabaImg from "./assets/yubaba.png"
 import { FaGithub } from "react-icons/fa"
 import { useStopwatch } from "react-timer-hook"
-import { useEffect } from "react"
+import Dialog from "./Dialog"
 
 function App() {
   const [clicked, setClicked] = useState("")
   const [found, setFound] = useState([""])
+  const [popupMsg, setPopupMsg] = useState("")
   const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
     useStopwatch({ autoStart: true })
 
@@ -18,16 +19,17 @@ function App() {
     if (found.length === 3) pause()
   }, [found])
 
+  useEffect(() => {
+    setTimeout(() => setPopupMsg(""), 3000)
+  }, [popupMsg])
+
+  useEffect(() => {
+    const dialog = document.querySelector("dialog")
+    dialog?.showModal()
+    return () => dialog?.close()
+  }, [])
+
   const menu = document.querySelector("template")
-  const foundBowser = document.querySelector(
-    `.${styles.foundBowser}`
-  ) as HTMLElement | null
-  const foundYubaba = document.querySelector(
-    `.${styles.foundYubaba}`
-  ) as HTMLElement | null
-  const foundKnight = document.querySelector(
-    `.${styles.foundKnight}`
-  ) as HTMLElement | null
 
   function openMenu(e: any) {
     if (menu)
@@ -46,11 +48,23 @@ function App() {
   }
 
   function checkLocation(e: any) {
+    const foundBowser = document.querySelector(
+      `.${styles.foundBowser}`
+    ) as HTMLElement | null
+    const foundYubaba = document.querySelector(
+      `.${styles.foundYubaba}`
+    ) as HTMLElement | null
+    const foundKnight = document.querySelector(
+      `.${styles.foundKnight}`
+    ) as HTMLElement | null
+
     if (menu) menu.style.display = "none"
     const buttonName = e.target.textContent.toLowerCase()
     if (found.includes(buttonName)) return
     if (clicked === buttonName) {
-      console.log("correct")
+      setPopupMsg(
+        `You found ${clicked.charAt(0).toUpperCase() + clicked.slice(1)}`
+      )
       setFound((prev) => [...prev, buttonName])
       if (buttonName === "bowser" && foundBowser)
         foundBowser.style.opacity = "0.5"
@@ -58,7 +72,7 @@ function App() {
         foundYubaba.style.opacity = "0.5"
       if (buttonName === "knight" && foundKnight)
         foundKnight.style.opacity = "0.5"
-    } else console.log("incorrect")
+    } else setPopupMsg(`Wrong guess, try again!`)
   }
 
   return (
@@ -75,6 +89,7 @@ function App() {
         </div>
       </header>
       <main>
+        {popupMsg && <h2 className={styles.popup}>{popupMsg}</h2>}
         <img
           onClick={closeMenu}
           className={styles.bg}
@@ -108,6 +123,7 @@ function App() {
         <button onClick={checkLocation}>Yubaba</button>
         <button onClick={checkLocation}>Knight</button>
       </template>
+      <Dialog />
     </>
   )
 }

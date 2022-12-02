@@ -35,3 +35,10 @@
 .foundKnight {
   width: 50px;
 }
+
+.popup {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  color: white;
+}

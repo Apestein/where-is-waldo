@@ -1,3 +1,8 @@
+@font-face {
+  font-family: perfect-pixel;
+  src: url(./styles/PerfectPixel.ttf);
+}
+
 *,
 *::after,
 *::before {
@@ -7,6 +12,7 @@
 }
 
 body {
+  font-family: perfect-pixel, sans-serif;
 }
 
 header {
@@ -24,7 +30,10 @@ main {
 }
 
 footer {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   color: #f7f8f9;
   background: radial-gradient(
     circle,
@@ -34,6 +43,10 @@ footer {
   );
   background-size: 200%;
   animation: gradient 10s ease infinite;
+}
+
+button {
+  font-family: perfect-pixel;
 }
 
 @keyframes gradient {
