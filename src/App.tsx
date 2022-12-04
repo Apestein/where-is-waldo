@@ -62,7 +62,7 @@ function App() {
         />
       </footer>
       <Template map={map} checkLocation={checkLocation} />
-      <Modal setMap={setMap} startTimer={start} />
+      <Modal map={map} setMap={setMap} startTimer={start} />
     </>
   )
 }

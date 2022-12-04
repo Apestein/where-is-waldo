@@ -13,6 +13,8 @@
 
 body {
   font-family: perfect-pixel, sans-serif;
+  min-height: 100vh;
+  background-color: black;
 }
 
 header {
@@ -23,6 +25,7 @@ header {
   top: 0;
   background-color: #f7f8f9;
   z-index: 1;
+  padding: 2vw;
 }
 
 main {
