@@ -26,7 +26,7 @@ function Main(props: any) {
 
   return (
     <main>
-      {popupMsg && <h2 className={styles.popup}>{popupMsg}</h2>}
+      {popupMsg && <output className={styles.popup}>{popupMsg}</output>}
       <img onClick={closeMenu} className={styles.bg} src={bgImg} alt="bg-img" />
       {map === "the-loc-nar" ? (
         <>

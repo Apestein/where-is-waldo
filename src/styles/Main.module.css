@@ -6,28 +6,25 @@
   position: absolute;
   width: 10%;
   height: 2.1%;
-  outline: 3px solid red;
+  outline: 3px solid transparent;
   left: 78.9%;
   top: 39.9%;
-  visibility: hidden;
 }
 .yubaba {
   position: absolute;
   width: 3%;
   height: 1.2%;
-  outline: 3px solid red;
+  outline: 3px solid transparent;
   left: 50.6%;
   top: 5.1%;
-  visibility: hidden;
 }
 .knight {
   position: absolute;
   width: 2%;
   height: 0.7%;
-  outline: 3px solid red;
+  outline: 3px solid transparent;
   left: 58.7%;
   top: 91.75%;
-  visibility: hidden;
 }
 .cacodemon {
   position: absolute;
@@ -35,8 +32,7 @@
   height: 4.2%;
   left: 50%;
   top: 22.6%;
-  outline: 3px solid red;
-  visibility: hidden;
+  outline: 3px solid transparent;
 }
 .billCipher {
   position: absolute;
@@ -44,8 +40,7 @@
   height: 2%;
   left: 70.2%;
   top: 64.5%;
-  outline: 3px solid red;
-  visibility: hidden;
+  outline: 3px solid transparent;
 }
 .courage {
   position: absolute;
@@ -53,8 +48,7 @@
   height: 1.5%;
   left: 30.75%;
   top: 51.25%;
-  outline: 3px solid red;
-  visibility: hidden;
+  outline: 3px solid transparent;
 }
 .popup {
   position: fixed;
@@ -62,4 +56,5 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+  font-size: clamp(1rem, 2vw, 2rem);
 }

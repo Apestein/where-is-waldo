@@ -6,17 +6,24 @@ import Modal from "./Modal"
 import Header from "./Header"
 import Main from "./Main"
 import Template from "./Template"
+import Highscore from "./Highscore"
 
 function App() {
   const [map, setMap] = useState("the-loc-nar")
   const [clicked, setClicked] = useState("")
-  const [found, setFound] = useState([""])
+  const [found, setFound] = useState<string[]>([])
   const [popupMsg, setPopupMsg] = useState("")
   const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
     useStopwatch({ autoStart: false })
 
   useEffect(() => {
-    if (found.length === 3) pause()
+    if (found.length === 3) {
+      pause()
+      const highscore = document.querySelector(
+        "#highscore"
+      ) as HTMLElement | null
+      if (highscore) highscore.style.display = "block"
+    }
   }, [found])
 
   useEffect(() => {
@@ -63,6 +70,7 @@ function App() {
       </footer>
       <Template map={map} checkLocation={checkLocation} />
       <Modal map={map} setMap={setMap} startTimer={start} />
+      <Highscore />
     </>
   )
 }

@@ -15,28 +15,28 @@ function Header(props: any) {
       const bowser = document.querySelector(
         "div[data-char='bowser']"
       ) as HTMLElement | null
-      if (bowser) bowser.style.visibility = "visible"
+      if (bowser) bowser.style.cssText = "outline: 3px solid red"
       const yubaba = document.querySelector(
         "div[data-char='yubaba']"
       ) as HTMLElement | null
-      if (yubaba) yubaba.style.visibility = "visible"
+      if (yubaba) yubaba.style.cssText = "outline: 3px solid red"
       const theKnight = document.querySelector(
         "div[data-char='the knight']"
       ) as HTMLElement | null
-      if (theKnight) theKnight.style.visibility = "visible"
+      if (theKnight) theKnight.style.cssText = "outline: 3px solid red"
     } else {
       const cacodemon = document.querySelector(
         "div[data-char='cacodemon']"
       ) as HTMLElement | null
-      if (cacodemon) cacodemon.style.visibility = "visible"
+      if (cacodemon) cacodemon.style.cssText = "outline: 3px solid red"
       const billCipher = document.querySelector(
         "div[data-char='bill cipher']"
       ) as HTMLElement | null
-      if (billCipher) billCipher.style.visibility = "visible"
+      if (billCipher) billCipher.style.cssText = "outline: 3px solid red"
       const courage = document.querySelector(
         "div[data-char='courage']"
       ) as HTMLElement | null
-      if (courage) courage.style.visibility = "visible"
+      if (courage) courage.style.cssText = "outline: 3px solid red"
     }
   }
 
@@ -47,7 +47,7 @@ function Header(props: any) {
         {hours.toString().padStart(2, 0)}:{minutes.toString().padStart(2, 0)}:
         {seconds.toString().padStart(2, 0)}
       </Time>
-      <button onClick={cheat}>Cheat</button>
+      <Button onClick={cheat}>Cheat</Button>
       <div>
         {map === "the-loc-nar" ? (
           <>
@@ -70,8 +70,7 @@ function Header(props: any) {
 export default Header
 
 const Img = styled.img`
-  /*   width: min(5vmax, 75px); */
-  max-width: 5vmax;
+  max-width: 10vw;
   max-height: 75px;
   width: auto;
   height: auto;
@@ -81,5 +80,11 @@ const H1 = styled.h1`
   font-size: clamp(1rem, 5vw, 2rem);
 `
 const Time = styled.time`
-  width: 7ch;
+  width: 6.5ch;
+  font-size: clamp(1rem, 2vw, 2rem);
+`
+const Button = styled.button`
+  font-size: clamp(0.75rem, 2vw, 2rem);
+  padding: 5px;
+  border-radius: 10px;
 `
