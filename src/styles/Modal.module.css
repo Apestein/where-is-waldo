@@ -17,6 +17,11 @@
   z-index: 2;
 }
 
+.start {
+  font-size: 1rem;
+  padding: 5px;
+}
+
 .image {
   height: 50vh !important;
   object-fit: cover;
