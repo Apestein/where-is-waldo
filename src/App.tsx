@@ -70,7 +70,7 @@ function App() {
       </footer>
       <Template map={map} checkLocation={checkLocation} />
       <Modal map={map} setMap={setMap} startTimer={start} />
-      <Highscore hours={hours} minutes={minutes} seconds={seconds} />
+      <Highscore hours={hours} minutes={minutes} seconds={seconds} map={map} />
     </>
   )
 }

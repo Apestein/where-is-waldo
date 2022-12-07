@@ -4,7 +4,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: transparent;
-  color: white;
   text-align: center;
 }
 
@@ -18,18 +17,21 @@
 }
 
 .start {
-  font-size: 1rem;
-  padding: 5px;
+  font-size: clamp(1rem, 5vw, 2rem);
+  padding: 5px 15px;
+  border-radius: 10px;
 }
 
 .image {
   height: 50vh !important;
   object-fit: cover;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .wrapper {
   display: flex;
-  background-color: white;
+  border-radius: 20px;
 }
 
 .charWrapper {
@@ -37,8 +39,10 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  color: black;
-  padding: 5px 5px;
+  padding: 5px;
+  background-color: white;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .modalChar {
@@ -51,5 +55,15 @@
   }
   .charWrapper {
     flex-direction: row;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  .image {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
 }

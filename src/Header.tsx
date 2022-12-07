@@ -47,8 +47,10 @@ function Header(props: any) {
         {hours.toString().padStart(2, 0)}:{minutes.toString().padStart(2, 0)}:
         {seconds.toString().padStart(2, 0)}
       </Time>
-      <Button onClick={cheat}>Cheat</Button>
-      <div>
+      <Button onClick={cheat}>
+        <span className="rainbow-text">Cheat</span>
+      </Button>
+      <FoundWrapper>
         {map === "the-loc-nar" ? (
           <>
             <Img id="char1" src={bowserImg} alt="bowser" />
@@ -62,7 +64,7 @@ function Header(props: any) {
             <Img id="char3" src={courageImg} alt="courage" />
           </>
         )}
-      </div>
+      </FoundWrapper>
     </header>
   )
 }
@@ -87,4 +89,7 @@ const Button = styled.button`
   font-size: clamp(0.75rem, 2vw, 2rem);
   padding: 5px;
   border-radius: 10px;
+`
+const FoundWrapper = styled.div`
+  min-width: fit-content;
 `

@@ -11,10 +11,17 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: #780000;
+  --secondary-color: #2f3e46;
+  --tertiary-color: red;
+}
+
 body {
   font-family: perfect-pixel, sans-serif;
   min-height: 100vh;
   background-color: black;
+  color: white;
 }
 
 header {
@@ -23,9 +30,9 @@ header {
   align-items: center;
   position: sticky;
   top: 0;
-  background-color: #f7f8f9;
   z-index: 1;
-  padding: 1vw;
+  padding: 10px;
+  background-color: #001d3d;
 }
 
 main {
@@ -38,7 +45,7 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 5px;
-  color: #f7f8f9;
+  color: white;
   background: radial-gradient(
     circle,
     rgba(131, 58, 180, 1) 0%,
@@ -51,6 +58,21 @@ footer {
 
 button {
   font-family: perfect-pixel;
+  background-color: #000814;
+  color: white;
+}
+
+.rainbow-text:hover {
+  background: radial-gradient(
+    circle,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
 }
 
 @keyframes gradient {

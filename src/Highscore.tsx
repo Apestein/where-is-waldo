@@ -32,14 +32,16 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
 function Highscore(props: any) {
-  const { hours, minutes, seconds } = props
-  const [scoreID, setScoreID] = useState("")
+  const { hours, minutes, seconds, map } = props
+  const mapCollection = map === "the-loc-nar" ? "map1" : "map2"
+  let scoreID = ""
+
   const [highscores, setHighscores] = useState<
     { username: string; time: string; id: string }[]
   >([])
 
   function loadHighscores() {
-    const hsQuery = query(collection(db, "highscores"), orderBy("time"))
+    const hsQuery = query(collection(db, mapCollection), orderBy("time"))
     const unsub = onSnapshot(hsQuery, (snapshot) => {
       const hsList: { username: string; time: string; id: string }[] = []
       snapshot.forEach((doc) => {
@@ -47,7 +49,6 @@ function Highscore(props: any) {
         hsList.push({ username, time, id })
       })
       setHighscores(hsList)
-      console.log(highscores)
     })
   }
 
@@ -60,12 +61,12 @@ function Highscore(props: any) {
       const minutesPad = minutes.toString().padStart(2, 0)
       const secondsPad = seconds.toString().padStart(2, 0)
       const id = uniqid()
-      await addDoc(collection(db, "highscores"), {
+      await addDoc(collection(db, mapCollection), {
         username: username,
         time: `${hoursPad}:${minutesPad}:${secondsPad}`,
         id: id,
       })
-      setScoreID(id)
+      scoreID = id
       //e.target.disabled = true
       loadHighscores()
     } catch (error) {
@@ -81,7 +82,7 @@ function Highscore(props: any) {
           <Button onClick={submit}>Submit Highscore</Button>
           <Input id="username" placeholder="Username" />
         </Wrapper>
-        <ul>
+        <Ul>
           {highscores.map((score, index) => {
             if (index < 10)
               return (
@@ -99,7 +100,7 @@ function Highscore(props: any) {
                 </>
               )
           })}
-        </ul>
+        </Ul>
       </ModalContent>
     </Modal>
   )
@@ -139,4 +140,7 @@ const Input = styled.input`
   font-size: 1rem;
   height: 37px;
   width: min(50%, 200px);
+`
+const Ul = styled.ul`
+  list-style-type: none;
 `

@@ -86,7 +86,7 @@ function Modal(props: any) {
           </div>
         </div>
         <button className={styles.start} onClick={handleClose}>
-          Start
+          <span className="rainbow-text">Start</span>
         </button>
       </div>
     </div>
