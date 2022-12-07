@@ -33,18 +33,21 @@ const db = getFirestore(app)
 
 function Highscore(props: any) {
   const { hours, minutes, seconds } = props
-  const [highscores, setHighscores] = useState<string[]>([])
+  const [scoreID, setScoreID] = useState("")
+  const [highscores, setHighscores] = useState<
+    { username: string; time: string; id: string }[]
+  >([])
 
   function loadHighscores() {
     const hsQuery = query(collection(db, "highscores"), orderBy("time"))
     const unsub = onSnapshot(hsQuery, (snapshot) => {
-      const hsList: string[] = []
+      const hsList: { username: string; time: string; id: string }[] = []
       snapshot.forEach((doc) => {
-        const { username, time } = doc.data()
-        hsList.push(`${username}: ${time}`)
+        const { username, time, id } = doc.data()
+        hsList.push({ username, time, id })
       })
-      console.log(hsList)
       setHighscores(hsList)
+      console.log(highscores)
     })
   }
 
@@ -53,10 +56,16 @@ function Highscore(props: any) {
       const input = document.querySelector("#username") as HTMLInputElement
       const username = input.value ? input.value : null
       if (!username) return
+      const hoursPad = hours.toString().padStart(2, 0)
+      const minutesPad = minutes.toString().padStart(2, 0)
+      const secondsPad = seconds.toString().padStart(2, 0)
+      const id = uniqid()
       await addDoc(collection(db, "highscores"), {
         username: username,
-        time: `${hours}:${minutes}:${seconds}`,
+        time: `${hoursPad}:${minutesPad}:${secondsPad}`,
+        id: id,
       })
+      setScoreID(id)
       //e.target.disabled = true
       loadHighscores()
     } catch (error) {
@@ -72,11 +81,25 @@ function Highscore(props: any) {
           <Button onClick={submit}>Submit Highscore</Button>
           <Input id="username" placeholder="Username" />
         </Wrapper>
-        <ol>
-          {highscores.map((score) => (
-            <li key={uniqid()}>{score}</li>
-          ))}
-        </ol>
+        <ul>
+          {highscores.map((score, index) => {
+            if (index < 10)
+              return (
+                <li key={score.id}>
+                  {index + 1}. {score.username}: {score.time}
+                </li>
+              )
+            else if (index === highscores.findIndex((e) => e.id === scoreID))
+              return (
+                <>
+                  <li>...</li>
+                  <li key={score.id}>
+                    {index + 1}. {score.username}: {score.time}
+                  </li>
+                </>
+              )
+          })}
+        </ul>
       </ModalContent>
     </Modal>
   )
@@ -100,8 +123,7 @@ const ModalContent = styled.div`
   text-align: center;
   color: white;
   font-size: clamp(1rem, 3vw, 2rem);
-  max-height: 70%;
-  overflow: scroll;
+  min-width: 80%;
 `
 const Wrapper = styled.div`
   display: flex;
@@ -111,8 +133,10 @@ const Wrapper = styled.div`
 const Button = styled.button`
   font-size: 1rem;
   padding: 5px;
+  min-width: fit-content;
 `
 const Input = styled.input`
   font-size: 1rem;
   height: 37px;
+  width: min(50%, 200px);
 `
