@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/where-is-waldo/static/css/main.f85d94a2.css",
+    "main.js": "/where-is-waldo/static/js/main.b34c586d.js",
+    "static/media/the-loc-nar.jpg": "/where-is-waldo/static/media/the-loc-nar.314cec99f414807b7e27.jpg",
+    "static/media/universe-113.jpg": "/where-is-waldo/static/media/universe-113.0d4fe7c106039f77baa0.jpg",
+    "static/media/cacodemon.png": "/where-is-waldo/static/media/cacodemon.1dad269cc1ccf2bab1a0.png",
+    "static/media/bill-cipher.png": "/where-is-waldo/static/media/bill-cipher.1e7e0fc476bd3a1ae4e8.png",
+    "static/media/yubaba.png": "/where-is-waldo/static/media/yubaba.124d78907c3fe76760bc.png",
+    "static/media/bowser.png": "/where-is-waldo/static/media/bowser.79c5eb2bbc827836b9d7.png",
+    "static/media/the-knight.webp": "/where-is-waldo/static/media/the-knight.b0014b3db7961de88c65.webp",
+    "static/media/courage.png": "/where-is-waldo/static/media/courage.200fe7a8a879d4131733.png",
+    "static/media/PerfectPixel.ttf": "/where-is-waldo/static/media/PerfectPixel.a5a13a36f156c1f52d8e.ttf",
+    "index.html": "/where-is-waldo/index.html",
+    "static/media/cursor.svg": "/where-is-waldo/static/media/cursor.bf7ff0a397367bc0bf0e.svg",
+    "main.f85d94a2.css.map": "/where-is-waldo/static/css/main.f85d94a2.css.map",
+    "main.b34c586d.js.map": "/where-is-waldo/static/js/main.b34c586d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f85d94a2.css",
+    "static/js/main.b34c586d.js"
+  ]
+}
